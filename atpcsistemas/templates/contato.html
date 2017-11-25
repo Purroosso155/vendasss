@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block titulo %}Contato{% endblock %}
+{% block conteudo %}
+{% if mostrar %}
+<h3>{{ mostrar }}</h3>
+{% endif %}
+
+<div class="form list-group-item" style="top:50px;">
+   <h2 class="text-center">{% trans "Contato" %}</h2>
+     		<form method="post">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <input class="form-input form-input-button" type="submit" value="Enviar Menságem"  style="width:100%">
+          </form>
+</div>
+
+ {% endblock conteudo %}

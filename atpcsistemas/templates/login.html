@@ -1,0 +1,145 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<html>
+<head>
+	<title>Login</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/atpcsistemas.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="animatop container-fluid text-center" style="margin-top:0%;">
+  	<div class="login-wraper text-center">
+          <h3 class="animatop"><strong>{% trans "ATPCsistemas" %}</strong></h3>
+        <form class="animaright" id="login" method="post">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <input class="login-input login-input-button anima" type="submit" value="Entrar">
+               <h4 class="anima"><a href="/cadastrar"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></h4>
+        </form>
+	</div>
+
+</div>
+</body>
+<style>
+    *{
+	margin:auto;
+	padding:0px;
+}
+
+
+
+@media (min-width: 500px) {
+	.login-wraper{
+		width:400px;
+	}
+}
+
+
+@media (max-width: 500px) {
+	.login-wraper{
+	width:80%;
+	}
+}
+
+#login {
+	background-color: white;
+		border-radius: 0px 0px 20px 20px;
+		box-shadow: 0 0 40px black;
+		border: 10px solid black;
+	}
+
+
+.login-wraper {
+		margin-top:10%;
+		}
+.login-wraper h3 {
+		background-color:black;
+		border-radius: 20px 20px 0px 0px ;
+		margin-bottom:0px;
+        color:white;
+        box-shadow: 0 0 40px black;
+       		}
+
+#id_username{
+	width:100%;
+	height: 40px;
+	border-radius: 10px;
+	margin:1px;
+	border: 2px solid #c3c3c3;
+	padding:5px;
+	font-size:15px;
+	text-align: center;
+	color:black;
+}
+
+#id_username:focus {
+    outline: none;
+    border: 1px solid #2980b9;
+    box-shadow: 0 0 10px #2980b9;
+
+}
+
+
+#id_password{
+	width:100%;
+	height: 40px;
+	border-radius: 10px;
+	margin:1px;
+	border: 2px solid #c3c3c3;
+	padding:5px;
+	font-size:15px;
+	text-align: center;
+	color:black;
+}
+
+#id_password:focus {
+    outline: none;
+    border: 1px solid #2980b9;
+    box-shadow: 0 0 10px #2980b9;
+
+}
+
+.login-input{
+	width:100%;
+	height: 40px;
+	border-radius: 10px;
+	margin:1px;
+	border: 1px solid #c3c3c3;
+	padding:5px;
+	font-size:15px;
+		}
+
+.login-input:focus {
+    outline: none;
+    border: 1px solid #2980b9;
+    box-shadow: 0 0 10px #2980b9;
+    }
+
+.login-input:hover {
+    outline: none;
+    border: 1px solid #2980b9;
+   box-shadow: 0 0 10px #2980b9;
+}
+
+.login-input-button{
+	background-color:#3498db;
+	color:#ffffff;
+	text-shadow: 2px 2px #2980b9;
+	border-bottom:thick solid #2980b9;
+
+}
+#login p{
+	margin-top:10px;
+	}
+
+
+
+#login p{
+	text-align: left;
+	color:silver;
+	}
+</style>
+</html>
+
+

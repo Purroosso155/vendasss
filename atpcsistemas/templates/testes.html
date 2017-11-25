@@ -1,0 +1,105 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <title>{% trans "ATPCsistemas - Testes" %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/atpcsistemas.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+</style>
+</head>
+<body>
+
+
+
+<div class="container" style="">
+<h1 class="text-center">Esta página é destinada apenas para execução de testes.</h1>
+
+    <table class="table table-bordered table-condensed">
+<tbody>
+<th>Index</th>
+<th>Código</th>
+<th>Data</th>
+<th>Descrição do Produto</th>
+<th>Quantidade</th>
+<th>Fabricação</th>
+<th>Validade</th>
+{% for produto in teste %}
+    <tr>
+        <td>{{ produto }}</td>
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.DataEntrada|date:"d/m/Y" }}</td>
+        <td>{{ produto.Produto }}</td>
+        <td>{{ produto.Quantidade }}</td>
+        <td>{{ produto.Fabricacao|date:"d/m/Y" }}</td>
+        <td>{{ produto.Validade|date:"d/m/Y" }}</td>
+
+{% endfor %}
+    </tr>
+</tbody>
+</table>
+    <div class="text-center" >
+        <p id="myPar">I am a paragraph.</p>
+<div id="myDiv">I am a div.</div>
+
+
+    </div>
+     <button onclick="myFunction()" type="button" class="btn btn-info btn-block"><span class="" ></span> myFunction </button>
+   <button onclick="myFunction2()" type="button" class="btn btn-info btn-block"><span class="" ></span> myFunction 2 </button>
+<button onclick="myFunction3()" type="button" class="btn btn-info btn-block"><span class="" ></span> myFunction 3 </button>
+
+
+</div>
+
+
+
+
+<script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/atpcsistemas.js' %}"></script>
+<script>
+
+function myFunction() {
+var cars = ["BMW", "Volvo", "Saab", "Ford"];
+var text = "";
+       for (i = 0; i < cars.length; i++) {
+    text += cars[i] + "<br>";
+}
+document.getElementById("myDiv").innerHTML = text;
+document.getElementById("myPar").innerHTML = text;
+}
+function myFunction2() {
+var text = '{ "employees" : [' +
+'{ "firstName":"John" , "lastName":"Doe" },' +
+'{ "firstName":"Anna" , "lastName":"Smith" },' +
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+var obj = JSON.parse(text);
+
+
+document.getElementById("myPar").innerHTML =
+obj.employees[1].firstName + " " + obj.employees[1].lastName;
+document.getElementById("myDiv").innerHTML =
+obj.employees[2].firstName + " " + obj.employees[2].lastName;
+}
+
+
+function myFunction3() {
+
+
+var obj = JSON.parse( content );
+
+
+document.getElementById("myPar").innerHTML =
+obj.teste[1].Produto;
+
+document.getElementById("myDiv").innerHTML =
+obj.teste[1].Quantidade;
+}
+
+</script>
+</body>
+</html>

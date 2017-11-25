@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block titulo %}{{ block.super }}{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+<h2>{% trans "Contas a Pagar" %}</h2>
+
+    {% for conta in contas_a_pagar %}
+    <ol><li><a href="{{ conta.get_absolute_url }}">{{ conta }}</a></li></ol>
+    {% endfor %}
+
+<ul class="nav nav-pills">
+<li class="active"><a href="pagar">{% trans "Ver todas" %}</a></li>
+<li class="active"><a href="pagar/nova">{% trans "Criar nova" %}</a></li>
+</ul>
+
+
+
+</div>
+
+
+<h2>{% trans "Contas a Receber" %}</h2>
+<div class="col-sm-4">
+    {% for conta in contas_a_receber %}
+   <ol> <li><a href="{{ conta.get_absolute_url }}">{{ conta }}</a></li></ol>
+    {% endfor %}
+<ul class="nav nav-pills">
+<li class="active"><a href="receber/">{% trans "Ver todas" %}</a></li>
+<li class="active"><a href="receber/nova">{% trans "Criar nova" %}</a></li>
+</ul>
+</div>
+    </div>
+        </div>
+    </div>
+{% endblock conteudo %}

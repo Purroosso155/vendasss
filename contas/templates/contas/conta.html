@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block titulo %}{{ block.super }}{% endblock %}
+
+
+{% block conteudo %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4>{{ conta }}</h4>
+      <ul>
+    <li>{% trans "Valor" %}:  {{ conta.valor|floatformat:2 }}</li>
+    <li>  {% trans "Vencimento" %}:   {{ conta.data_vencimento|date:"d/m/Y" }}  </li>
+    <li>{% trans "Pessoa" %}:   <a href="{{ conta.pessoa.get_absolute_url }}">{{ conta.pessoa }}  </a></li>
+    <li>{% trans "Histórico" %}:   <a href="{{ conta.historico.get_absolute_url }}">  {{ conta.historico }}  </a></li>
+    <li>{% trans "Status" %}:  {{ conta.get_status_display }}</li>
+     {% ifequal conta.status "p" %}
+    <li>  {% trans "Pagamento" %}:  {{ conta.data_pagamento|date:"d/m/Y" }}  </li>
+    {% endifequal %}
+          <li>{% trans "Descrição" %}:  {{ conta.descricao }}</li>
+</ul>
+<ul class="nav nav-pills .nav-stacked">
+<li><a href="editar/">{% trans "Editar" %}</a></li>
+<li><a href="excluir/">{% trans "Excluir" %}</a></li>
+</ul>
+    </div>
+    
+    {% if conta.pagamentos.count %}
+    <div class="col-sm-4">
+<div class="table-responsive">
+    <h4>{% trans "Pagamentos" %}</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{% trans "ID" %}</th>
+        <th>{% trans "Data pagamento" %}</th>
+        <th>{% trans "Valor pago" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+          {% for pagamento in conta.pagamentos %}
+        <td>{{ pagamento.id }}</td>
+        <td>{{ pagamento.data_pagamento|date:"d/m/Y" }}</td>
+        <td>{{ pagamento.valor|floatformat:2 }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+    </div>
+    {% endif %}
+
+
+    {% ifequal conta.status "a" %}
+    <div class="col-sm-4">
+      <h4>{% trans "Novo pagamento" %}</h4>
+<form action="{{ conta.get_absolute_url }}pagar/" method="post">
+    <table>    {{ form_pagamento }}  </table>
+ <p></p>
+  <input type="submit" class="btn btn-success" value="{% trans "Salvar pagamento" %}"/>
+   {% csrf_token %}
+</form>       
+    </div>
+    {% endifequal %}
+  </div>
+</div>
+{% endblock conteudo %}
+
+
+

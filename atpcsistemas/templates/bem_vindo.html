@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block titulo %}Bem Vindo!!!{% endblock %}
+{% block conteudo%}
+
+<div class="animaleft container-fluid text-center" style="margin-top:0%;">
+  	<div class="login-wraper">
+          <h3><strong class="animaleft">{% trans "SEJA BEM VINDO!!!" %}</strong></h3>
+        <form id="login" class="anima">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <h2 class="animatop list-grup list-group-item text-sucess" style="color:green">Seu cadastro foi efetuado com sucesso!!!</h2>
+            <h4 class="anima list-group-item text-warning">Apartir deste momento você poderá contar com
+            esta plataforma para facilitar a sua vida,
+            aumentar sua produtividade e evitar, ou até mesmo,"quem sabe", eliminar o stress do seu dia.</h4>
+        </form>
+	</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block titulo %}{{ block.super }}{% endblock %}
+
+
+
+{% block conteudo %}{{ block.super }}
+
+{% regroup pagina.object_list by get_status_display as contas %}
+
+{% for grupo in contas %}
+<div class="container">
+    <h1>{{ titulo }}</h1>
+<h3>{{ grupo.grouper }}</h3>
+{% for conta in grupo.list %}
+<div>
+<ol><li><a href="{{ conta.get_absolute_url }}">{{ conta }}</a></li></ol>
+</div>
+{% endfor %}
+{% endfor %}
+
+<hr/>
+<div class="paginacao">
+Paginas:
+{% for pagina_numero in paginacao.page_range %}
+<a href="{{ request.path }}?pagina={{ pagina_numero }}">{{ pagina_numero }}</a>
+{% endfor %}
+</div>
+</div>
+{% endblock conteudo %}
